@@ -42,6 +42,7 @@ get_first_line() {
     awk -v limit=300 '
         BEGIN { printed = 0; }
         printed == 0 && NF {
+            gsub(//, "", $0);
             $0 = substr($0, 0, limit);
             printf("%s", $0);
             printed = 1;
